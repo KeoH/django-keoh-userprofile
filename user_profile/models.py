@@ -2,6 +2,7 @@ from .storage import OverwriteStorage
 from cStringIO import StringIO 
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
+from django.utils.translation import ugettext_lazy as _
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import models
 from PIL import Image
@@ -46,7 +47,14 @@ class UserProfile(AbstractUser):
 		self.resize_avatar()
 		super(UserProfile, self).save()
 
+	def avatar_admin(self):
+		html = '<figure><img width="60px" height="60px" src="%s"></figure>' % (self.avatar.url)
+		return html
+
+	avatar_admin.allow_tags = True
+	avatar_admin.short_description = _('Avatar')
+
 	class Meta:
 		ordering = ['username']
-		verbose_name = 'User profile'
-		verbose_name_plural = 'Users profiles'
+		verbose_name = _('User profile')
+		verbose_name_plural = _('Users profiles')
