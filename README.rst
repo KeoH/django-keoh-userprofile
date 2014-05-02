@@ -16,12 +16,21 @@ Quick start
           ...
           'user_profile',
       )
+2. Add this to your settings.py file::
 
-2. Include the user_profile URLconf in your project urls.py like this::
+	AUTH_USER_MODEL = 'user_profile.UserProfile'
 
-      url(r'^profile/', include('user_profile.urls', namespace='profile')),
+3. Run `python manage.py syncdb` to create the user-profile models.::
 
-3. Run `python manage.py syncdb` to create the user-profile models.
+	python manage.py syncdb
+
+Or if you are using South, create migrations::
+
+	python manage.py schemamigration user_profile --initial
+
+and migrate::
+
+	python manage.py migrate user_profile
 
 4. Start the development server and visit http://127.0.0.1:8000,
    you need to create a superuser like this::
