@@ -1,0 +1,6 @@
+include LICENSE
+include README.rst
+recursive-include user_profile/templates *
+recursive-include user_profile/static *
+recursive-include docs *
+recursive-exclude * *.pyc

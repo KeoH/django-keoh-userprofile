@@ -1,0 +1,25 @@
+<div class="login-form hidden" id="singup-form">
+	<p>
+		Crea una cuenta
+	</p>
+	<form action="" method='post'>
+		{% csrf_token %}
+		<div>
+			<span class="icon-user"></span>
+			{{ form_singup.username }}
+		</div>
+		<div>
+			<span class="icon-mail"></span>
+			{{ form_singup.email }}
+		</div>
+		<div>
+			<span class="icon-lock"></span>
+			{{ form_singup.password1 }}
+		</div>
+		<div>
+			<span class="icon-lock"></span>
+			{{ form_singup.password2 }}
+		</div>
+		<input class="form-button" type="submit" value="Registrarse">
+	</form>
+</div>
