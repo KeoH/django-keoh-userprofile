@@ -1,16 +1,25 @@
-<div class="login-form hidden" id="singin-form">
+<div class="login-form hidden" id="signin-form">
+	{% if user.is_authenticated %}
+	<p>Usuario logeado</p>
+	<p>{{ user.username }}</p>
+	{% else %}
 	<p>
 		Sign In
 	</p>
-	<form action="">
+	<form action="" method="post">
+		{% csrf_token %}
 		<div>
-		<span class="icon-user"></span>
-		<input type="text" placeholder="Username o email" class="input">
+			{{ form_signin.username.errors }}
+			<span class="icon-user"></span>
+			{{ form_signin.username }}
 		</div>
 		<div>
-		<span class="icon-lock"></span>
-		<input type="password" placeholder="Elige contraseña" class="input">
+			{{ form_signin.password.errors }}
+			<span class="icon-lock"></span>
+			{{ form_signin.password }}
 		</div>
-		<input class="form-button" type="submit" value="Entrar">
+
+		<input class="form-button" type="submit" value="Sign in">
 	</form>
+	{% endif %}
 </div>

@@ -1,25 +1,29 @@
-<div class="login-form hidden" id="singup-form">
+<div class="login-form hidden" id="signup-form">
 	<p>
 		Sign up
 	</p>
 	<form action="" method='post'>
 		{% csrf_token %}
 		<div>
+			{{ form_signup.username.errors }}
 			<span class="icon-user"></span>
-			{{ form_singup.username }}
+			{{ form_signup.username }}
 		</div>
 		<div>
+			{{ form_signup.email.errors }}
 			<span class="icon-mail"></span>
-			{{ form_singup.email }}
+			{{ form_signup.email }}
 		</div>
 		<div>
+			{{ form_signup.password1.errors }}
 			<span class="icon-lock"></span>
-			{{ form_singup.password1 }}
+			{{ form_signup.password1 }}
 		</div>
 		<div>
+			{{ form_signup.password2.errors }}
 			<span class="icon-lock"></span>
-			{{ form_singup.password2 }}
+			{{ form_signup.password2 }}
 		</div>
-		<input class="form-button" type="submit" value="Registrarse">
+		<input class="form-button" type="submit" value="Sign up">
 	</form>
 </div>

@@ -1,25 +1,29 @@
 from .storage import OverwriteStorage
 from cStringIO import StringIO 
 from django.conf import settings
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import models
 from PIL import Image
+from django.db.models.signals import post_save, pre_save
 import os
 
-class UserProfile(AbstractUser):
+
+class UserProfile(models.Model):
+
+	user = models.OneToOneField(User)
 
 	def save_avatar(self, filename):
 
 		extension = filename[filename.rfind('.'):]
-		new_path = 'user_profile/%s-avatar%s' %(self.username, extension)
+		new_path = 'user_profile/%s-avatar%s' %(self.user.username, extension)
 		return new_path
 
 	avatar = models.ImageField(storage=OverwriteStorage(), upload_to=save_avatar, blank=True)
 
 	def __unicode__(self):
-		return self.username
+		return self.user.username
 
 	def resize_avatar(self):
 		# code from with some changes : http://www.yilmazhuseyin.com/blog/dev/create-thumbnails-imagefield-django/
@@ -43,18 +47,18 @@ class UserProfile(AbstractUser):
 		suf = SimpleUploadedFile(os.path.split(self.avatar.name)[-1],temp_handle.read(), content_type='image/jpeg')
 		self.avatar.save('%s.%s' %(os.path.splitext(suf.name)[0], 'jpg'),suf, save=False)
 
-	def save(self):
+	def save(self, *args, **kwargs):
 		self.resize_avatar()
 		super(UserProfile, self).save()
 
-	def avatar_admin(self):
-		html = '<figure><img width="60px" height="60px" src="%s"></figure>' % (self.avatar.url)
-		return html
+	def get_avatar(self):
+		if self.avatar:
+			avatar_url = self.avatar.url
+		else:	
+			avatar_url = '/static/img/default.png'
+		return avatar_url
 
-	avatar_admin.allow_tags = True
-	avatar_admin.short_description = _('Avatar')
+def create_user_profile(sender, instance, **kwargs):
+	p = UserProfile.objects.get_or_create(user=instance)
 
-	class Meta:
-		ordering = ['username']
-		verbose_name = _('User profile')
-		verbose_name_plural = _('Users profiles')
+post_save.connect(create_user_profile, sender=User,dispatch_uid="Userprofile created")

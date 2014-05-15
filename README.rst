@@ -5,8 +5,6 @@ Keoh User Profile
 Keoh User Profile is a very simple app to use extended version of Django
 User model.
 
-Detailed documentation is in the "docs" directory.
-
 Quick start
 -----------
 
@@ -16,25 +14,28 @@ Quick start
           ...
           'user_profile',
       )
-2. Add this to your settings.py file::
 
-	AUTH_USER_MODEL = 'user_profile.UserProfile'
-
-3. Run `python manage.py syncdb` to create the user-profile models.::
+2. Run `python manage.py syncdb` to create the user-profile models::
 
 	python manage.py syncdb
 
-Or if you are using South, create migrations::
-
-	python manage.py schemamigration user_profile --initial
-
-and migrate::
+Or if you are using South, migrate:
 
 	python manage.py migrate user_profile
 
-4. Start the development server and visit http://127.0.0.1:8000,
-   you need to create a superuser like this::
+3. Visit http://127.0.0.1:8000/admin to view the new app in Django Admin
 
-   	  python manage.py createsuperuser
+Details
+-----------
 
-5. Visit http://127.0.0.1:8000/admin to view the new app in Django Admin
+This application creates a user_profile table in your database, this model is linked to django user model,
+you can access to avatar image through the userprofile object in the user instance object::
+
+	user.userprofile.get_avatar()
+
+It returns the complete url to the avatar file, or if it does not exist, it returns a default image.
+
+Forms and user sign in and sign up
+-----------
+
+Documentation in progress.. :(

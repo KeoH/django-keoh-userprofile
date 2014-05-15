@@ -9,20 +9,20 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-keoh-userprofile',
-    version='0.0.1',
+    version='0.0.3',
     packages=['user_profile'],
     include_package_data=True,
-    license='BSD License',  # example license
+    license='BSD License',
     description='A simple Django app with extended User model',
     long_description=README,
-    url='http://mznstudio.herokuapp.com',
+    url='https://github.com/KeoH/django-keoh-userprofile',
     author='Francisco Manzano Magaña',
     author_email='keoh77@gmail.com',
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: BSD License', # example license
+        'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.6',
