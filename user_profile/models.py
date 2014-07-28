@@ -55,7 +55,7 @@ class UserProfile(models.Model):
 		if self.avatar:
 			avatar_url = self.avatar.url
 		else:	
-			avatar_url = '/static/img/default.png'
+			avatar_url = settings.STATIC_URL+'img/default.png'
 		return avatar_url
 
 def create_user_profile(sender, instance, **kwargs):
