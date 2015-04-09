@@ -1,29 +1,40 @@
-<div class="login-form hidden" id="signup-form">
-	<p>
+{% extends "base.html" %}
+{% load i18n staticfiles %}
+{% block base_content %}
+<div class="Form-wrapper" id="signup-form">
+	{% if user.is_authenticated %}
+	<p>{% trans 'You are already logged' %}, {{ user.first_name }}</p>
+	{% else %}
+	<h2>
 		Sign up
-	</p>
-	<form action="" method='post'>
+	</h2>
+	<form action="" method='POST' class="awesome-form">
 		{% csrf_token %}
-		<div>
-			{{ form_signup.username.errors }}
-			<span class="icon-user"></span>
-			{{ form_signup.username }}
+		<div class="label-group">
+			{{ form.username.errors }}
+			{{ form.username }}
+			<label for="username"><span class="fa fa-user"></span> Username</label>
 		</div>
-		<div>
-			{{ form_signup.email.errors }}
-			<span class="icon-mail"></span>
-			{{ form_signup.email }}
+		<div class="label-group">
+			{{ form.email.errors }}
+			{{ form.email }}
+			<label for="email"><span class="fa fa-envelope-o"></span> Password</label>
 		</div>
-		<div>
-			{{ form_signup.password1.errors }}
-			<span class="icon-lock"></span>
-			{{ form_signup.password1 }}
+		<div class="label-group">
+			{{ form.password1.errors }}
+			{{ form.password1 }}
+			<label for="password1"><span class="fa fa-lock"></span> Password</label>
 		</div>
-		<div>
-			{{ form_signup.password2.errors }}
-			<span class="icon-lock"></span>
-			{{ form_signup.password2 }}
+		<div class="label-group">
+			{{ form.password2.errors }}
+			{{ form.password2 }}
+			<label for="password2"><span class="fa fa-lock"></span> Repeat password</label>
 		</div>
-		<input class="form-button" type="submit" value="Sign up">
+		<input type="submit" value="Sign up">
 	</form>
+	{% endif %}
 </div>
+{% endblock %}
+{% block extrajs %}
+	<script src="{% static 'js/awesome-forms.js' %}"></script>
+{% endblock %}

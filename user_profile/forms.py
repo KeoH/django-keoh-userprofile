@@ -9,10 +9,10 @@ from django.contrib.auth import authenticate
 
 class EmailUserCreationForm(UserCreationForm):
 
-	username = forms.CharField(widget=forms.TextInput(attrs={'class': 'input', 'placeholder':_('Username')}))
-	email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'input', 'placeholder':_('Email')}))
-	password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input', 'placeholder':_('Password')}))
-	password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input', 'placeholder':_('Repeat password')}))
+	username = forms.CharField(widget=forms.TextInput(attrs={'class': 'input'}))
+	email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'input'}))
+	password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input'}))
+	password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input'}))
 
 	class Meta:
 		model = User
@@ -21,8 +21,8 @@ class EmailUserCreationForm(UserCreationForm):
 
 class UserLoginForm(forms.Form):
 
-	username = forms.CharField(widget=forms.TextInput(attrs={'class': 'input', 'placeholder':_('Username')}))
-	password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input', 'placeholder':_('Password')}))
+	username = forms.CharField(widget=forms.TextInput(attrs={'class': 'input'}))
+	password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input'}))
 
 	def __init__(self, *args, **kwargs):
 		self.user_cache = None

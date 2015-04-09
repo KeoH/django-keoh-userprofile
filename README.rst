@@ -1,12 +1,11 @@
-=====
-Keoh User Profile
-=====
+#Keoh User Profile
+
 
 Keoh User Profile is a very simple app to use extended version of Django
 User model.
 
-Quick start
------------
+##Quick start
+
 
 1. Add "user_profile" to your INSTALLED_APPS setting like this::
 
@@ -25,8 +24,8 @@ Or if you are using South, migrate:
 
 3. Visit http://127.0.0.1:8000/admin to view the new app in Django Admin
 
-Details
------------
+##Details
+
 
 This application creates a user_profile table in your database, this model is linked to django user model,
 you can access to avatar image through the userprofile object in the user instance object::
@@ -35,7 +34,7 @@ you can access to avatar image through the userprofile object in the user instan
 
 It returns the complete url to the avatar file, or if it does not exist, it returns a default image.
 
-Forms and user sign in and sign up
------------
+##Forms and user sign in and sign up
+
 
 Documentation in progress.. :(

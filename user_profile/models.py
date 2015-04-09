@@ -1,5 +1,5 @@
 from .storage import OverwriteStorage
-from cStringIO import StringIO 
+from cStringIO import StringIO
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
@@ -13,11 +13,16 @@ import os
 class UserProfile(models.Model):
 
 	user = models.OneToOneField(User)
+	twitter = models.CharField(max_length=100, blank=True)
+	facebook_link = models.URLField(blank=True)
+
+	def get_twitter_url(self):
+		return 'https://twitter.com/{0}'.format(self.twitter)
 
 	def save_avatar(self, filename):
 
 		extension = filename[filename.rfind('.'):]
-		new_path = 'user_profile/%s-avatar%s' %(self.user.username, extension)
+		new_path = 'user_profile/%s%s-avatar%s' %(self.user.first_name, self.user.pk, extension)
 		return new_path
 
 	avatar = models.ImageField(storage=OverwriteStorage(), upload_to=save_avatar, blank=True)
@@ -35,7 +40,7 @@ class UserProfile(models.Model):
 		except:
 			AVATAR_SIZE = (200,200)
 
-		DJANGO_TYPE = self.avatar.file.content_type 
+		DJANGO_TYPE = self.avatar.file.content_type
 
 		image = Image.open(StringIO(self.avatar.read()))
 		image = image.resize(AVATAR_SIZE, Image.ANTIALIAS)
@@ -48,13 +53,13 @@ class UserProfile(models.Model):
 		self.avatar.save('%s.%s' %(os.path.splitext(suf.name)[0], 'jpg'),suf, save=False)
 
 	def save(self, *args, **kwargs):
-		self.resize_avatar()
+		#self.resize_avatar()
 		super(UserProfile, self).save()
 
 	def get_avatar(self):
 		if self.avatar:
 			avatar_url = self.avatar.url
-		else:	
+		else:
 			avatar_url = settings.STATIC_URL+'img/default.png'
 		return avatar_url
 
