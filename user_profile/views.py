@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-
+#encoding:utf-8
 from django.views.generic import View, TemplateView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -20,7 +19,7 @@ class LoginView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             login(request, form.get_user())
-            return HttpResponseRedirect(reverse('userprofile:Profile'))
+            return HttpResponseRedirect(reverse('kstore:userprofile:Profile'))
         return render(request, self.template_name, {'form' : form})
 
 class CreateUserView(View):

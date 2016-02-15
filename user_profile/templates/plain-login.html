@@ -1,0 +1,31 @@
+{% load i18n staticfiles %}
+<div class="Form-wrapper">
+	{% if user.is_authenticated %}
+	<p>{% trans 'You are already logged' %}, {{ user.first_name }}</p>
+	{% else %}
+	<h2>
+		Sign In
+	</h2>
+	<form action="" method="POST" class="awesome-form">
+		{% csrf_token %}
+		<div class="label-group">
+			{{ form.username.errors }}
+			{{ form.username }}
+			<label for="username"><span class="fa fa-user"></span> Username</label>
+		</div>
+		<div class="label-group">
+			{{ form.password.errors }}
+			{{ form.password }}
+			<label for="password"><span class="fa fa-lock"></span> Password</label>
+		</div>
+
+		<input type="submit" value="Sign in">
+		<p class="NoCuentaAun"><a href="{% url 'userprofile:SignUp' %}">¿Aún no tienes cuenta?</a></p>
+	</form>
+	<div class="social-login">
+		<a class="socialButton facebook" href="{% url 'social:begin' 'facebook' %}"><i class="fa fa-facebook"></i> Facebook Login</a>
+		<a class="socialButton twitter" href="{% url 'social:begin' 'twitter' %}"><i class="fa fa-twitter"></i> Twitter Login</a>
+	</div>
+	{% endif %}
+</div>
+<script src="{% static 'js/awesome-forms.js' %}"></script>

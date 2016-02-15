@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+#encoding:utf-8
 from requests import request, HTTPError
 from django.core.files.base import ContentFile
 

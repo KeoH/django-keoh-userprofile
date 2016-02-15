@@ -1,0 +1,73 @@
+.Form-wrapper {
+  color: #000;
+  display: block;
+  box-sizing: border-box;
+  margin: 0 auto;
+  max-width: 80%;
+}
+.Form-wrapper h2 {
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+}
+.Form-wrapper form {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
+.Form-wrapper input {
+  border: 1px solid #ffa500;
+  background: none;
+  padding: 0.8em;
+  margin: 1em 0;
+}
+.Form-wrapper input:active,
+.Form-wrapper input:focus {
+  outline: none;
+}
+.Form-wrapper input[type="text"],
+.Form-wrapper input[type="email"],
+.Form-wrapper input[type="password"] {
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid #ffa500;
+  width: 60%;
+}
+.Form-wrapper input[type="text"]:focus + label,
+.Form-wrapper input[type="email"]:focus + label,
+.Form-wrapper input[type="password"]:focus + label,
+.Form-wrapper input[type="text"].has-value + label,
+.Form-wrapper input[type="email"].has-value + label,
+.Form-wrapper input[type="password"].has-value + label {
+  top: 1em;
+  font-size: 0.8em;
+  color: #aaa;
+}
+.Form-wrapper input[type="submit"] {
+  width: 50%;
+}
+.Form-wrapper input[type="submit"]:active {
+  color: #fff;
+  background: #ffa500;
+}
+.label-group {
+  position: relative;
+  display: block;
+}
+.label-group label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-style: italic;
+  color: #888;
+  transform: translate(-50%, -50%);
+  transition: all 0.2s;
+  pointer-events: none;
+}
+.social-login {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+.social-login a {
+  max-width: 150px;
+}

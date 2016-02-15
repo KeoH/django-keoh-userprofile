@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load i18n staticfiles %}
-{% block base_content %}
+{% block content %}
 <div class="Form-wrapper" id="signup-form">
 	{% if user.is_authenticated %}
 	<p>{% trans 'You are already logged' %}, {{ user.first_name }}</p>
@@ -18,7 +18,7 @@
 		<div class="label-group">
 			{{ form.email.errors }}
 			{{ form.email }}
-			<label for="email"><span class="fa fa-envelope-o"></span> Password</label>
+			<label for="email"><span class="fa fa-envelope-o"></span> Email</label>
 		</div>
 		<div class="label-group">
 			{{ form.password1.errors }}
@@ -34,7 +34,5 @@
 	</form>
 	{% endif %}
 </div>
-{% endblock %}
-{% block extrajs %}
-	<script src="{% static 'js/awesome-forms.js' %}"></script>
+<script src="{% static 'js/awesome-forms.js' %}"></script>
 {% endblock %}

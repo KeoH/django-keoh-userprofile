@@ -1,3 +1,4 @@
+#encoding:utf-8
 from .storage import OverwriteStorage
 from cStringIO import StringIO
 from django.conf import settings

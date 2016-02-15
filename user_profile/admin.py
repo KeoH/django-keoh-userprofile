@@ -1,3 +1,4 @@
+#encoding:utf-8
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
@@ -16,7 +17,7 @@ class UserAdmin(UserAdmin):
 	def avatar_admin(self, obj):
 		if obj.userprofile.avatar:
 			html = '<figure><img width="60px" height="60px" src="%s"></figure>' % (obj.userprofile.avatar.url)
-		else:	
+		else:
 			html = '<figure><img width="60px" height="60px" src="%s"></figure>' % ('/static/img/default.png')
 		return html
 
