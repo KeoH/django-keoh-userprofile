@@ -1,5 +1,5 @@
 #Keoh User Profile
-
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/KeoH/django-keoh-userprofile/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/KeoH/django-keoh-userprofile/?branch=master)
 
 Keoh User Profile is a very simple app to use extended version of Django
 User model.
