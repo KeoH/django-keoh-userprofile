@@ -2,3 +2,7 @@ build/
 dist/
 django_keoh_userprofile.egg-info/
 *.pyc
+.vscode/
+.tox/
+.cov_html/
+.pytest_cache/
