@@ -6,3 +6,4 @@ django_keoh_userprofile.egg-info/
 .tox/
 .cov_html/
 .pytest_cache/
+.coverage
