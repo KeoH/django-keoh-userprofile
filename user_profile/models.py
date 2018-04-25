@@ -1,10 +1,9 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.conf import settings
-from .storage import OverwriteStorage
 
 
-class UserProfile(User):
+class UserProfile(AbstractUser):
 
     twitter = models.CharField(max_length=100, blank=True)
     facebook_link = models.URLField(blank=True)
@@ -14,16 +13,15 @@ class UserProfile(User):
 
     def save_avatar(self, filename):
         extension = filename[filename.rfind('.'):]
-        new_path = 'user_profile/%s%s-avatar%s' % (
+        new_path = 'user_profile/{}{}-avatar{}'.format(
             self.first_name, self.pk, extension)
         return new_path
 
-    _avatar = models.ImageField(
-        storage=OverwriteStorage(), upload_to=save_avatar, blank=True)
+    avatar = models.ImageField(upload_to=save_avatar, blank=True)
 
     @property
-    def avatar(self):
-        return self._avatar.url or '{}/static/img/default.png'.format(
+    def get_avatar(self):
+        return self.avatar.url or '{}/static/img/default.png'.format(
             settings.STATIC_URL)
 
     def __str__(self):
