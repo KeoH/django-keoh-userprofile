@@ -1,0 +1,18 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+Pillow = "==5.1.0"
+
+[dev-packages]
+tox = "*"
+pytest = "*"
+pytest-cov = "*"
+"pytest-flake8" = "*"
+"autopep8" = "*"
+pycodestyle = "==2.3.1"
+
+[requires]
+python_version = "3.4"

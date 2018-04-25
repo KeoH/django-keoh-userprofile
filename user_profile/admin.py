@@ -1,28 +1,24 @@
-#encoding:utf-8
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.models import User
+from django.utils.safestring import mark_safe
 
 from .models import UserProfile
 
-class UserProfileInline(admin.StackedInline):
-	model = UserProfile
-	can_delete = False
 
-class UserAdmin(UserAdmin):
+class UserProfileAdmin(UserAdmin):
 
-	list_display = UserAdmin.list_display + ('avatar_admin',)
-	inlines = (UserProfileInline,)
+    list_display = UserAdmin.list_display + ('avatar_admin',)
 
-	def avatar_admin(self, obj):
-		if obj.userprofile.avatar:
-			html = '<figure><img width="60px" height="60px" src="%s"></figure>' % (obj.userprofile.avatar.url)
-		else:
-			html = '<figure><img width="60px" height="60px" src="%s"></figure>' % ('/static/img/default.png')
-		return html
+    def avatar_admin(self, obj):
+        return mark_safe('<figure><img width="60px" height="60px" src="{}"></figure>'.format(obj.avatar.url)) # noqa
 
-	avatar_admin.allow_tags = True
-	avatar_admin.short_description = 'Avatar'
+    avatar_admin.allow_tags = True
+    avatar_admin.short_description = 'Avatar'
+    fieldsets = UserAdmin.fieldsets + (
+        ('User Profile', {'fields': (
+            'avatar',
+        )}),
+    )
 
-admin.site.unregister(User)
-admin.site.register(User, UserAdmin)
+
+admin.site.register(UserProfile, UserProfileAdmin)
