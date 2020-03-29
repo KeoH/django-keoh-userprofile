@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-Pillow = "==5.1.0"
+Pillow = ">=5.1.0"
 
 [dev-packages]
 tox = "*"
@@ -12,7 +12,7 @@ pytest = "*"
 pytest-cov = "*"
 "pytest-flake8" = "*"
 "autopep8" = "*"
-pycodestyle = "==2.3.1"
+pycodestyle = ">=2.3.1"
 
 [requires]
-python_version = "3.4"
+python_version = "3.6"
