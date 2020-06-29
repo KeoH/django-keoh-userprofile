@@ -23,22 +23,19 @@ setup(
     author='Francisco Manzano Magaña',
     author_email='keoh77@gmail.com',
     install_requires=['pillow'],
-    python_requires='>=3.4',
+    python_requires='>=3.6',
     keywords='profile,django,user',
     extras_require={
         'dev': ['check-manifest'],
         'test': ['coverage'],
     },
     classifiers=[
-        'Development Status :: 1 - Planning',
         'Environment :: Web Environment',
         'Framework :: Django',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7'
     ],
